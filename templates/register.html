@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card" style="max-width:500px; margin:0 auto;">
+    <h2 style="margin-bottom:10px; color:#8B0000;">Register for Course</h2>
+    <p style="margin-bottom:20px;">You are about to register for: <strong>{{ course['name'] }}</strong></p>
+    <form method="POST">
+        <button type="submit" class="btn btn-primary" style="width:100%;">Confirm Registration</button>
+    </form>
+    <a href="/course/{{ course['id'] }}" style="display:block; text-align:center; margin-top:15px; color:#8B0000;">Cancel</a>
+</div>
+{% endblock %}

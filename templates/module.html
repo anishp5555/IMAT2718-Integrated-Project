@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="javascript:history.back()" style="color:#8B0000;">← Back</a>
+<div class="card" style="margin-top:20px;">
+    <h1 style="margin-bottom:10px;">{{ module['title'] }}</h1>
+    <p><strong>Module Code:</strong> {{ module['module_code'] }}</p>
+    <p style="margin-top:10px;"><strong>Description:</strong> {{ module['description'] }}</p>
+    <p style="margin-top:10px;"><strong>Contents:</strong> {{ module['contents'] }}</p>
+    <p style="margin-top:10px;"><strong>Staff Member:</strong> {{ module['staff_member'] }}</p>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="/" style="color:#8B0000;">← Back to Courses</a>
+<h1 style="margin: 20px 0 10px;">{{ course['name'] }}</h1>
+<p style="color:#666; margin-bottom:10px;">{{ course['description'] }}</p>
+<p style="margin-bottom:30px;"><strong>Duration:</strong> {{ course['duration'] }}</p>
+<a href="/register/{{ course['id'] }}" class="btn btn-primary" style="margin-bottom:30px;">Register for this Course</a>
+<h2 style="margin-bottom:20px;">Modules</h2>
+{% for module in modules %}
+<div class="card">
+    <h3>{{ module['module_code'] }} — {{ module['title'] }}</h3>
+    <p style="margin-bottom:10px; color:#666;">{{ module['description'] }}</p>
+    <p style="margin-bottom:10px;"><strong>Staff:</strong> {{ module['staff_member'] }}</p>
+    <a href="/module/{{ module['id'] }}" class="btn btn-secondary">View Module</a>
+</div>
+{% endfor %}
+{% endblock %}
