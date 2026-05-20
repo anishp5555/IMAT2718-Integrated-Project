@@ -57,6 +57,7 @@ def init_db():
             ('BSc Computer Science', 'A degree covering programming, algorithms, and systems.', '3 Years'),
             ('BSc Business Information Systems', 'Combines business knowledge with IT skills.', '3 Years'),
             ('HND Computing', 'A practical computing qualification.', '2 Years'),
+            
         ])
         cursor.executemany("INSERT INTO modules (module_code, title, description, contents, staff_member, course_id) VALUES (?, ?, ?, ?, ?, ?)", [
             ('IMAT1234', 'Introduction to Programming', 'Basics of Python programming.', 'Variables, loops, functions', 'Dr Smith', 1),
