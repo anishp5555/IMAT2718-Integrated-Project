@@ -3,6 +3,7 @@ import sqlite3
 def get_db():
     conn = sqlite3.connect('college.db')
     conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA foreign_keys = ON")
     return conn
 
 def init_db():
@@ -52,18 +53,28 @@ def init_db():
     ''')
 
     cursor.execute("SELECT COUNT(*) FROM courses")
+
     if cursor.fetchone()[0] == 0:
-        cursor.executemany("INSERT INTO courses (name, description, duration) VALUES (?, ?, ?)", [
-            ('BSc Computer Science', 'A degree covering programming, algorithms, and systems.', '3 Years'),
-            ('BSc Business Information Systems', 'Combines business knowledge with IT skills.', '3 Years'),
-            ('HND Computing', 'A practical computing qualification.', '2 Years'),
-            
-        ])
-        cursor.executemany("INSERT INTO modules (module_code, title, description, contents, staff_member, course_id) VALUES (?, ?, ?, ?, ?, ?)", [
-            ('IMAT1234', 'Introduction to Programming', 'Basics of Python programming.', 'Variables, loops, functions', 'Dr Smith', 1),
-            ('IMAT2718', 'Integrated Project', 'Build a full system using agile methods.', 'Flask, SQLite, GitHub', 'Dr Al-Shargabi', 2),
-            ('IMAT1101', 'Database Systems', 'Intro to relational databases.', 'SQL, ERDs, Normalisation', 'Dr Jones', 1),
-        ])
+        cursor.executemany(
+            "INSERT INTO courses (name, description, duration) VALUES (?, ?, ?)",
+            [
+                ('BSc Computer Science', 'A degree covering programming, algorithms, and systems.', '3 Years'),
+                ('BSc Business Information Systems', 'Combines business knowledge with IT skills.', '3 Years'),
+                ('HND Computing', 'A practical computing qualification.', '2 Years')
+            ]
+        )
+
+        cursor.executemany(
+            "INSERT INTO modules (module_code, title, description, contents, staff_member, course_id) VALUES (?, ?, ?, ?, ?, ?)",
+            [
+                ('IMAT1234', 'Introduction to Programming', 'Basics of Python programming.', 'Variables, loops, functions', 'Dr Smith', 1),
+                ('IMAT2718', 'Integrated Project', 'Build a full system using agile methods.', 'Flask, SQLite, GitHub', 'Dr Al-Shargabi', 2),
+                ('IMAT1101', 'Database Systems', 'Intro to relational databases.', 'SQL, ERDs, Normalisation', 'Dr Jones', 1)
+            ]
+        )
 
     conn.commit()
     conn.close()
+
+if __name__ == "__main__":
+    init_db()
